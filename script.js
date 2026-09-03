@@ -1,53 +1,149 @@
-const YOUTUBE_URL = "https://www.youtube.com/@KisScrr";
-const ROBLOX_URL = "https://roblox.com.bz/communities/8760152165/";
+/*
+    OOF INCORPORATION — KEY SYSTEM
+
+    IMPORTANT:
+
+    YouTube:
+    - Starts incomplete
+    - Clicking the button opens YouTube
+    - After clicking, YouTube becomes COMPLETED
+
+    Roblox:
+    - Starts incomplete
+    - Clicking the button opens Roblox
+    - Roblox NEVER becomes completed
+
+    Therefore:
+    Maximum progress = 1 / 2
+    The key can NEVER be unlocked from this page.
+*/
+
 
 let youtubeCompleted = false;
 
-// Roblox può essere aperto, ma non viene marcato come completato.
-function openYouTube() {
-    window.open(YOUTUBE_URL, "_blank", "noopener,noreferrer");
+
+/* =========================
+   YOUTUBE
+========================= */
+
+function completeYouTube() {
 
     youtubeCompleted = true;
 
-    document
-        .getElementById("youtubeRequirement")
-        .classList.add("done");
+    const requirement =
+        document.getElementById("youtubeRequirement");
 
-    document.getElementById("youtubeStatus").textContent = "Completed";
-    document.getElementById("youtubeIcon").textContent = "✓";
+    const status =
+        document.getElementById("youtubeStatus");
+
+    const icon =
+        document.getElementById("youtubeIcon");
+
+
+    requirement.classList.add("done");
+
+    status.textContent = "Completed";
+
+    icon.textContent = "✓";
+
 
     updateProgress();
 }
+
+
+/* =========================
+   ROBLOX
+========================= */
 
 function openRoblox() {
-    // Apre normalmente l'invito/gruppo Roblox
-    window.open(ROBLOX_URL, "_blank", "noopener,noreferrer");
 
-    // INTENZIONALMENTE NON COMPLETA IL REQUISITO
-    // Roblox rimane sempre incompleto.
-    document
-        .getElementById("robloxRequirement")
-        .classList.remove("done");
+    /*
+        DO NOT set robloxCompleted = true.
 
-    document.getElementById("robloxStatus").textContent = "Not completed";
-    document.getElementById("robloxIcon").textContent = "🔒";
+        Roblox must ALWAYS remain incomplete.
+    */
+
+    const requirement =
+        document.getElementById("robloxRequirement");
+
+    const status =
+        document.getElementById("robloxStatus");
+
+    const icon =
+        document.getElementById("robloxIcon");
+
+
+    requirement.classList.remove("done");
+
+    status.textContent = "Not completed";
+
+    icon.textContent = "🔒";
+
 
     updateProgress();
 }
 
+
+/* =========================
+   PROGRESS
+========================= */
+
 function updateProgress() {
+
+    /*
+        Only YouTube can ever count.
+
+        0 / 2  → before YouTube click
+        1 / 2  → after YouTube click
+
+        Roblox can never increase this number.
+    */
+
     const completed = youtubeCompleted ? 1 : 0;
+
 
     document.getElementById("progressText").textContent =
         `${completed} / 2`;
 
+
     document.getElementById("progressBar").style.width =
         `${(completed / 2) * 100}%`;
 
-    const keyButton = document.getElementById("keyButton");
-    const keyButtonText = document.getElementById("keyButtonText");
 
-    // Non sarà mai possibile arrivare a 2/2
+    const keyButton =
+        document.getElementById("keyButton");
+
+    const keyButtonText =
+        document.getElementById("keyButtonText");
+
+
+    /*
+        The key is ALWAYS locked.
+
+        There is intentionally no condition that can
+        make this button available.
+    */
+
     keyButton.disabled = true;
-    keyButtonText.textContent = "🔒 Complete all requirements";
+
+    keyButtonText.textContent =
+        "🔒 Complete all requirements";
 }
+
+
+/* =========================
+   INITIAL STATE
+========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    youtubeCompleted = false;
+
+    /*
+        Roblox has no completion variable at all.
+        It will therefore always remain incomplete.
+    */
+
+    updateProgress();
+
+});
