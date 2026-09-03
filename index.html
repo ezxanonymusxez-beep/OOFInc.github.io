@@ -6,28 +6,22 @@
 
     <title>OOF Incorporation — Key System</title>
 
-    <meta name="description"
-          content="Get your OOF Incorporation key by completing the requirements.">
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="bg"></div>
+    <div class="background-grid"></div>
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
 
-<div class="page">
-
-    <!-- HEADER -->
     <header>
         <div class="brand">
-            <div class="brand-icon">
-                OOF
-            </div>
+            <div class="logo">OOF</div>
 
             <div>
                 <div class="brand-name">OOF Incorporation</div>
-                <div class="brand-sub">KEY SYSTEM</div>
+                <div class="brand-subtitle">KEY SYSTEM</div>
             </div>
         </div>
 
@@ -38,144 +32,186 @@
     </header>
 
 
-    <!-- MAIN -->
     <main>
 
         <div class="badge">
-            🔑 KEY GENERATOR
+            🔑 &nbsp; KEY GENERATOR
         </div>
 
         <h1>
             Get your <span>OOF Key</span>
         </h1>
 
-        <p class="subtitle">
-            Complete the requirements below to unlock your key.
-            It only takes a few seconds.
+        <p class="description">
+            It looks like some of the required steps may have been skipped
+            on the previous page.
+            <br>
+            Please complete the requirements below correctly before continuing.
         </p>
 
 
-        <!-- PROGRESS -->
-        <div class="progress-box">
+        <div class="warning">
+            <div class="warning-icon">!</div>
 
-            <div class="progress-top">
-                <span>Progress</span>
+            <div>
+                <strong>Steps were skipped</strong>
+
+                <p>
+                    The previous verification process was not completed correctly.
+                    Please go through the required steps below again.
+                    You must complete all requirements before the key can be unlocked.
+                </p>
+            </div>
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress-section">
+
+            <div class="progress-header">
+                <span>Requirements</span>
                 <strong id="progressText">0 / 2</strong>
             </div>
 
-            <div class="progress">
-                <div id="progressBar"></div>
+            <div class="progress-track">
+                <div id="progressBar" class="progress-bar"></div>
             </div>
 
         </div>
 
 
         <!-- REQUIREMENTS -->
-        <section class="card">
 
-            <div class="card-header">
-                <div>
-                    <h2>Complete Requirements</h2>
-                    <p>Complete both steps to continue.</p>
-                </div>
-
-                <div class="shield">
-                    ✓
-                </div>
-            </div>
+        <div class="requirements">
 
 
             <!-- YOUTUBE -->
-            <div class="requirement" id="youtubeRequirement">
 
-                <div class="req-number">01</div>
+            <div id="youtubeRequirement" class="requirement">
 
-                <div class="req-icon youtube">
+                <div class="requirement-icon youtube">
                     ▶
                 </div>
 
-                <div class="req-info">
-                    <strong>Subscribe to our YouTube</strong>
-                    <span>Support OOF Incorporation</span>
+                <div class="requirement-info">
+
+                    <h3>YouTube</h3>
+
+                    <p>
+                        Subscribe to the OOF Incorporation YouTube channel.
+                    </p>
+
+                    <span id="youtubeStatus" class="status">
+                        Not completed
+                    </span>
+
                 </div>
 
-                <button
-                    class="action"
-                    onclick="completeYouTube()">
-                    Subscribe
-                </button>
-
-                <div class="completed">
-                    ✓
-                </div>
+                <a
+                    id="youtubeButton"
+                    class="requirement-button"
+                    href="https://www.youtube.com/@YOUR_CHANNEL"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onclick="completeYouTube()"
+                >
+                    <span id="youtubeIcon">↗</span>
+                    Open YouTube
+                </a>
 
             </div>
+
 
 
             <!-- ROBLOX -->
-            <div class="requirement" id="robloxRequirement">
 
-                <div class="req-number">02</div>
+            <div id="robloxRequirement" class="requirement">
 
-                <div class="req-icon roblox">
+                <div class="requirement-icon roblox">
                     R
                 </div>
 
-                <div class="req-info">
-                    <strong>Join our Roblox Group</strong>
-                    <span>Become part of the community</span>
+                <div class="requirement-info">
+
+                    <h3>Roblox</h3>
+
+                    <p>
+                        Join the official OOF Incorporation Roblox community.
+                    </p>
+
+                    <span id="robloxStatus" class="status">
+                        Not completed
+                    </span>
+
                 </div>
 
-                <button
-                    class="action"
-                    onclick="completeRoblox()">
-                    Join Group
-                </button>
-
-                <div class="completed">
-                    ✓
-                </div>
+                <a
+                    id="robloxButton"
+                    class="requirement-button"
+                    href="https://www.roblox.com/communities/YOUR_GROUP_ID"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onclick="openRoblox()"
+                >
+                    <span>↗</span>
+                    Open Roblox
+                </a>
 
             </div>
 
+        </div>
 
-            <!-- GET KEY -->
+
+
+        <!-- KEY -->
+
+        <div class="key-section">
+
             <button
                 id="keyButton"
                 class="key-button"
-                onclick="getKey()"
-                disabled>
-
+                disabled
+            >
                 <span id="keyButtonText">
                     🔒 Complete Requirements
                 </span>
-
             </button>
 
-
-            <p class="secure">
-                🔒 Your key is generated securely
-            </p>
-
-        </section>
-
-
-        <!-- INFO -->
-        <div class="info">
-
-            <div>
-                <strong>⚡ Fast</strong>
-                <span>Quick key access</span>
+            <div class="secure-text">
+                🔒 Key generation remains locked until all requirements are completed.
             </div>
 
-            <div>
-                <strong>🛡️ Safe</strong>
-                <span>No account information required</span>
+        </div>
+
+
+        <div class="info-cards">
+
+            <div class="info-card">
+                <div class="info-card-icon">⚡</div>
+
+                <div>
+                    <strong>Fast</strong>
+                    <p>Quick access system.</p>
+                </div>
             </div>
 
-            <div>
-                <strong>🎮 Roblox</strong>
-                <span>Made for the community</span>
+            <div class="info-card">
+                <div class="info-card-icon">🛡</div>
+
+                <div>
+                    <strong>Secure</strong>
+                    <p>OOF Incorporation system.</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-icon">🔑</div>
+
+                <div>
+                    <strong>Key Access</strong>
+                    <p>Complete all requirements.</p>
+                </div>
             </div>
 
         </div>
@@ -187,9 +223,8 @@
         © 2026 OOF Incorporation · Key System
     </footer>
 
-</div>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
